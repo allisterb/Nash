@@ -45,12 +45,6 @@ module Server =
     [<Rpc>]
     let humanize(date:DateTime) = async { return date.Humanize() }
 
-    [<Rpc>]
-    let mdtohtml(s:string) = async { return Markdig.Markdown.ToHtml s }
-
-    [<Rpc>]
-    let mdtotext(s:string) = async { return Markdig.Markdown.ToPlainText s }
-
     (* User functions *)
     [<Rpc>]
     let getUser(user:string) : Async<User option> = 
@@ -145,32 +139,6 @@ module Server =
         |> Sql.executeNonQueryAsync
         |> Async.map(function | Ok j  -> Ok() | Error exn -> err(exn.Message); Error(exn.Message))
 
-    [<Rpc>]
-    let getSymptomJournal(userName:string) : Async<SymptomEntry list option> = 
-        pgdb
-        |> Sql.query "SELECT * FROM public.physical_symptom_journal WHERE user_name=@u"
-        |> Sql.parameters ["u", Sql.string userName]
-        |> Sql.executeAsync (fun read -> {
-            UserName =  read.string("user_name")
-            Date = (read.timestamp "date").ToDateTime() 
-            Magnitude = read.intOrNone "magnitude"  
-            Location = read.stringOrNone "location"
-        }) 
-        |> Async.map(function | Ok j  -> Some j | Error exn -> err(exn.Message); None)
-
-    [<Rpc>]
-    let getPatients() : Async<Result<Patient list, string>> = 
-        pgdb
-        |> Sql.query "SELECT * FROM patient"
-        |> Sql.executeAsync (fun read ->
-        {
-            Id =  read.string("Id") |> Models.String
-            Sex = Male
-            Name = None
-            BirthDate = None
-            Address = None
-        }) 
-        |> Async.map(function | Ok r -> Ok r | Error exn -> Error(exn.Message))
 
     (* expert.ai NLU functions *)
     

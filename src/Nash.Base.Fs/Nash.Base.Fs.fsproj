@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Compile Include="Runtime.fs" />
-    <Compile Include="NLP.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -175,11 +175,7 @@ module Journal =
                     say <| sprintf "Sorry I wasn't able to add that symptom to your journal. Could you try again?"
             } |> Async.Start 
 
-        let getSymptomJournal u =  
-            async {
-                do sayRandom waitRetrievePhrases "symptom journal"
-                return! Server.getSymptomJournal u 
-            }
+        
 
         (* Interpreter logic begins here *)
         match Dialogue.frame utterances with

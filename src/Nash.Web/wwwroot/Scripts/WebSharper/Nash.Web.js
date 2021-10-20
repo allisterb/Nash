@@ -1,7 +1,7 @@
 (function(Global)
 {
  "use strict";
- var Nash,Web,ClientExtensions,SweetAlert,SC$1,Bs,SC$2,JQueryPieProgressOptions,NLU,Witai,Utterance,Intent,Entity,Trait,_Utterance,_Value,BabelNet,DisambiguateApiResponse,TokenFragment,CharFragment,NLG,SC$3,NLU$1,Intent$1,Trait$1,Entity$1,Utterance$1,Voice,_Entity,Text,_Utterance$1,_Intent,_Entity$1,_Trait,Domain,SC$4,Knowledge,EmotionalTrait,BehavioralTrait,Relation,Triple,Subject,Verb,Object,ExpertAIEntity,ExpertAILemma,WritingJournlEntry,CUI,MicState,ClientState,Interpreter,CUI$1,Dialogue,Question,QuestionType,DialogueModule,QuestionDialogs,Questions,Symptoms,SC$5,Journal,SC$6,Tests,SC$7,User,SC$8,Main,SC$9,Client,SC$10,Nash$Web_GeneratedPrintf,WebSharper,Arrays,SweetAlert$1,IntelliFactory,Runtime,Operators,UI,Doc,AttrProxy,Client$1,Templates,Utils,console,$,Random,List,AttrModule,Concurrency,Seq,Strings,JavaScript,Pervasives,Numeric,ClientSideJson,Provider,JSON,Collections,Map,SDK,Unchecked,Date,Remoting,AjaxRemotingProvider,Math,Wit,document,Dictionary;
+ var Nash,Web,ClientExtensions,SweetAlert,SC$1,Bs,SC$2,JQueryPieProgressOptions,NLU,Witai,Utterance,Intent,Entity,Trait,_Utterance,_Value,BabelNet,DisambiguateApiResponse,TokenFragment,CharFragment,NLG,SC$3,NLU$1,Intent$1,Trait$1,Entity$1,Utterance$1,Voice,_Entity,Text,_Utterance$1,_Intent,_Entity$1,_Trait,Domain,SC$4,Knowledge,EmotionalTrait,BehavioralTrait,Relation,Triple,Subject,Verb,Object,ExpertAIEntity,ExpertAILemma,WritingJournlEntry,CUI,MicState,ClientState,Interpreter,CUI$1,Dialogue,Question,QuestionType,DialogueModule,QuestionDialogs,Questions,Symptoms,SC$5,Journal,SC$6,Tests,SC$7,User,SC$8,Main,SC$9,Client,SC$10,Nash$Web_GeneratedPrintf,GeneratedPrintf,WebSharper,Arrays,SweetAlert$1,IntelliFactory,Runtime,Operators,UI,Doc,AttrProxy,Client$1,Templates,Utils,console,$,Random,List,AttrModule,Concurrency,Seq,Strings,JavaScript,Pervasives,Numeric,ClientSideJson,Provider,JSON,Collections,Map,SDK,Unchecked,Date,Remoting,AjaxRemotingProvider,Math,Wit,document,Dictionary;
  Nash=Global.Nash=Global.Nash||{};
  Web=Nash.Web=Nash.Web||{};
  ClientExtensions=Web.ClientExtensions=Web.ClientExtensions||{};
@@ -73,6 +73,7 @@
  Client=Web.Client=Web.Client||{};
  SC$10=Global.StartupCode$Nash_Web$Client=Global.StartupCode$Nash_Web$Client||{};
  Nash$Web_GeneratedPrintf=Global.Nash$Web_GeneratedPrintf=Global.Nash$Web_GeneratedPrintf||{};
+ GeneratedPrintf=Global.GeneratedPrintf=Global.GeneratedPrintf||{};
  WebSharper=Global.WebSharper;
  Arrays=WebSharper&&WebSharper.Arrays;
  SweetAlert$1=Global.SweetAlert;
@@ -648,7 +649,7 @@
   {
    return(((Runtime.Curried3(function($1,$2,$3)
    {
-    return $1("Intent("+Utils.toSafe($2)+", "+Nash$Web_GeneratedPrintf.p$15($3)+")");
+    return $1("Intent("+Utils.toSafe($2)+", "+Nash$Web_GeneratedPrintf.p$16($3)+")");
    }))(Global.id))(this.get_Name()))(this.get_Confidence());
   },
   get_Confidence:function()
@@ -686,7 +687,7 @@
   {
    return(((((Runtime.Curried(function($1,$2,$3,$4,$5)
    {
-    return $1("Entity("+Utils.toSafe($2)+", "+Utils.toSafe($3)+", "+Utils.toSafe($4)+", "+Nash$Web_GeneratedPrintf.p$15($5)+")");
+    return $1("Entity("+Utils.toSafe($2)+", "+Utils.toSafe($3)+", "+Utils.toSafe($4)+", "+Nash$Web_GeneratedPrintf.p$16($5)+")");
    },5))(Global.id))(this.get_Name()))(this.get_Role()))(this.get_Value()))(this.get_Confidence());
   },
   get_Confidence:function()
@@ -711,7 +712,7 @@
   {
    return((((Runtime.Curried(function($1,$2,$3,$4)
    {
-    return $1(Nash$Web_GeneratedPrintf.p$13($2)+" "+Nash$Web_GeneratedPrintf.p$16($3)+" "+Nash$Web_GeneratedPrintf.p$18($4));
+    return $1(Nash$Web_GeneratedPrintf.p$14($2)+" "+Nash$Web_GeneratedPrintf.p$17($3)+" "+Nash$Web_GeneratedPrintf.p$19($4));
    },4))(Global.id))(this.get_Intent()))(this.get_Traits()))(this.get_Entities());
   },
   get_Entities:function()
@@ -1016,7 +1017,7 @@
    {
     return function($2)
     {
-     return $1("Utterance: "+Nash$Web_GeneratedPrintf.p$22($2)+" ");
+     return $1("Utterance: "+Nash$Web_GeneratedPrintf.p$23($2)+" ");
     };
    }(Global.id))(utterance));
    return m({
@@ -1711,7 +1712,7 @@
   {
    return((((Runtime.Curried(function($1,$2,$3,$4)
    {
-    return $1("("+Nash$Web_GeneratedPrintf.p$4($2)+", "+Nash$Web_GeneratedPrintf.p$6($3)+", "+Nash$Web_GeneratedPrintf.p$20($4)+")");
+    return $1("("+Nash$Web_GeneratedPrintf.p$5($2)+", "+Nash$Web_GeneratedPrintf.p$7($3)+", "+Nash$Web_GeneratedPrintf.p$21($4)+")");
    },4))(Global.id))(this.get_Subject()))(this.get_Verb()))(this.get_Object());
   },
   get_Object:function()
@@ -2153,7 +2154,7 @@
   {
    return((((Runtime.Curried(function($1,$2,$3,$4)
    {
-    return $1("Name: "+Utils.toSafe($2)+" Module: "+Utils.toSafe($3)+" Type: "+Nash$Web_GeneratedPrintf.p$21($4)+" ");
+    return $1("Name: "+Utils.toSafe($2)+" Module: "+Utils.toSafe($3)+" Type: "+Nash$Web_GeneratedPrintf.p$22($4)+" ");
    },4))(Global.id))(this.get_Name()))(this.get_Module()))(this.get_Type());
   },
   get_Target:function()
@@ -2354,14 +2355,14 @@
   if(q.get_Name()!==qn)
    (((Runtime.Curried3(function($1,$2,$3)
    {
-    return $1(Nash$Web_GeneratedPrintf.p$26($2)+" at the top of the stack does not have the name "+Utils.toSafe($3)+".");
+    return $1(Nash$Web_GeneratedPrintf.p$27($2)+" at the top of the stack does not have the name "+Utils.toSafe($3)+".");
    }))(Operators.FailWith))(q))(qn);
   DialogueModule.popq(d,debug);
   debug((function($1)
   {
    return function($2)
    {
-    return $1("Cancel "+Nash$Web_GeneratedPrintf.p$26($2)+".");
+    return $1("Cancel "+Nash$Web_GeneratedPrintf.p$27($2)+".");
    };
   }(Global.id))(q));
  };
@@ -2438,7 +2439,7 @@
   {
    return function($2)
    {
-    return $1("Pop "+Nash$Web_GeneratedPrintf.p$26($2)+".");
+    return $1("Pop "+Nash$Web_GeneratedPrintf.p$27($2)+".");
    };
   }(Global.id))(q));
  };
@@ -2449,7 +2450,7 @@
   {
    return function($2)
    {
-    return $1("Push "+Nash$Web_GeneratedPrintf.p$26($2)+".");
+    return $1("Push "+Nash$Web_GeneratedPrintf.p$27($2)+".");
    };
   }(Global.id))(q));
  };
@@ -2461,7 +2462,7 @@
   {
    return function($2)
    {
-    return $1("Pop "+Nash$Web_GeneratedPrintf.p$12($2)+".");
+    return $1("Pop "+Nash$Web_GeneratedPrintf.p$13($2)+".");
    };
   }(Global.id))(m));
  };
@@ -2471,7 +2472,7 @@
   {
    return function($2)
    {
-    return $1("Push "+Nash$Web_GeneratedPrintf.p$12($2)+".");
+    return $1("Push "+Nash$Web_GeneratedPrintf.p$13($2)+".");
    };
   }(Global.id))(m));
   d.get_Utterances().unshift(m);
@@ -2741,27 +2742,27 @@
   SC$5.$cctor=Global.ignore;
   SC$5.name="Symptoms";
  };
- Journal.update$245$96=Runtime.Curried3(function(trigger,$1,$2)
+ Journal.update$241$96=Runtime.Curried3(function(trigger,$1,$2)
  {
   return(trigger("3"))("3");
  });
- Journal.update$243$96=Runtime.Curried3(function(trigger,$1,$2)
+ Journal.update$239$96=Runtime.Curried3(function(trigger,$1,$2)
  {
   return(trigger("2"))("2");
  });
- Journal.update$241$96=Runtime.Curried3(function(trigger,$1,$2)
+ Journal.update$237$96=Runtime.Curried3(function(trigger,$1,$2)
  {
   return(trigger("1"))("1");
  });
- Journal.update$203$96=Runtime.Curried3(function(trigger,$1,$2)
+ Journal.update$199$96=Runtime.Curried3(function(trigger,$1,$2)
  {
   return(trigger("3"))("3");
  });
- Journal.update$201$96=Runtime.Curried3(function(trigger,$1,$2)
+ Journal.update$197$96=Runtime.Curried3(function(trigger,$1,$2)
  {
   return(trigger("2"))("2");
  });
- Journal.update$199$96=Runtime.Curried3(function(trigger,$1,$2)
+ Journal.update$195$96=Runtime.Curried3(function(trigger,$1,$2)
  {
   return(trigger("1"))("1");
  });
@@ -2873,7 +2874,7 @@
        {
         return $13("<span style='color:white;background-color:#00FA9A'>"+Utils.printList(function($15)
         {
-         return Nash$Web_GeneratedPrintf.p$2($15);
+         return Nash$Web_GeneratedPrintf.p$3($15);
         },$14)+"</span>");
        };
       }(Global.id))(a$31));
@@ -2892,7 +2893,7 @@
         {
          return function($14)
          {
-          return $13(Nash$Web_GeneratedPrintf.p$1($14));
+          return $13(Nash$Web_GeneratedPrintf.p$2($14));
          };
         }(Global.id))(a$32));
         return Concurrency.Zero();
@@ -2906,7 +2907,7 @@
          {
           return function($14)
           {
-           return $13("<span style='color:white;background-color:#FFC0CB'>"+Nash$Web_GeneratedPrintf.p$1($14)+"</span>");
+           return $13("<span style='color:white;background-color:#FFC0CB'>"+Nash$Web_GeneratedPrintf.p$2($14)+"</span>");
           };
          }(Global.id))(a$32));
          return Concurrency.Zero();
@@ -2924,7 +2925,7 @@
            {
             return function($14)
             {
-             return $13(Nash$Web_GeneratedPrintf.p($14));
+             return $13(Nash$Web_GeneratedPrintf.p$1($14));
             };
            }(Global.id))(a$33));
            return Concurrency.Zero();
@@ -2938,7 +2939,7 @@
             {
              return function($14)
              {
-              return $13("<span style='color:white;background-color:#7B68EE'>"+Nash$Web_GeneratedPrintf.p($14)+"</span>");
+              return $13("<span style='color:white;background-color:#7B68EE'>"+Nash$Web_GeneratedPrintf.p$1($14)+"</span>");
              };
             }(Global.id))(a$33));
             return Concurrency.Zero();
@@ -2956,7 +2957,7 @@
               {
                return function($14)
                {
-                return $13(Nash$Web_GeneratedPrintf.p$10($14));
+                return $13(Nash$Web_GeneratedPrintf.p$11($14));
                };
               }(Global.id))(a$34));
               return Concurrency.Zero();
@@ -2970,7 +2971,7 @@
                {
                 return function($14)
                 {
-                 return $13("<span style='color:white;background-color:#FF4500'>"+Nash$Web_GeneratedPrintf.p$10($14)+"</span>");
+                 return $13("<span style='color:white;background-color:#FF4500'>"+Nash$Web_GeneratedPrintf.p$11($14)+"</span>");
                 };
                }(Global.id))(a$34));
                return Concurrency.Zero();
@@ -2988,7 +2989,7 @@
                  {
                   return function($14)
                   {
-                   return $13(Nash$Web_GeneratedPrintf.p$11($14));
+                   return $13(Nash$Web_GeneratedPrintf.p$12($14));
                   };
                  }(Global.id))(a$35));
                  return Concurrency.Zero();
@@ -3001,7 +3002,7 @@
                   {
                    return function($14)
                    {
-                    return $13("<span style='color:white;background-color:#FFFF00'>"+Nash$Web_GeneratedPrintf.p$11($14)+"</span>");
+                    return $13("<span style='color:white;background-color:#FFFF00'>"+Nash$Web_GeneratedPrintf.p$12($14)+"</span>");
                    };
                   }(Global.id))(a$35));
                   return Concurrency.Zero();
@@ -4025,7 +4026,7 @@
     {
      return function($14)
      {
-      return $13("Agenda is "+Nash$Web_GeneratedPrintf.p$26($14)+".");
+      return $13("Agenda is "+Nash$Web_GeneratedPrintf.p$27($14)+".");
      };
     }(Global.id))((d.get_DialogueQuestions())[0]));
     User.update(d);
@@ -4037,7 +4038,7 @@
     {
      return function($14)
      {
-      return $13("Agenda is "+Nash$Web_GeneratedPrintf.p$26($14)+".");
+      return $13("Agenda is "+Nash$Web_GeneratedPrintf.p$27($14)+".");
      };
     }(Global.id))((d.get_DialogueQuestions())[0])),Tests.update(d)):m.$==1&&(($2=_Intent$1("help",m.$0),$2!=null&&$2.$==1)?m.$1.$==0:($3=Intent$2("help",m.$0),$3!=null&&$3.$==1)&&m.$1.$==0)?(say("The following commands are available."),echo("The following commands are available:"),echo("<span style='background-color:blue;color:white'>journal</span> - Show a list of writing prompts"),echo("<span style='background-color:blue;color:white'>debug-journal</span> <text-entry> - Show a set of debug info for a journal entry.")):m.$==1&&(a$2=(a$3=DialogueModule.PropNotSet_(d,"started",m.$0),a$3!=null&&a$3.$==1?{
      $:1,
@@ -4166,7 +4167,7 @@
    {
     Client.debug(((((Runtime.Curried(function($2,$3,$4,$5)
     {
-     return $2("Voice: "+Nash$Web_GeneratedPrintf.p$13($3)+" "+Nash$Web_GeneratedPrintf.p$16($4)+" "+Nash$Web_GeneratedPrintf.p$18($5));
+     return $2("Voice: "+Nash$Web_GeneratedPrintf.p$14($3)+" "+Nash$Web_GeneratedPrintf.p$17($4)+" "+Nash$Web_GeneratedPrintf.p$19($5));
     },4))(Global.id))(intent))(_trait))(entity));
     Main.update((m=new Utterance$1({
      $:0,
@@ -4398,7 +4399,7 @@
   SC$10.$cctor=Global.ignore;
   function main(term,command)
   {
-   var $1,e,a,e$1,b,a$1,e$2,b$1,a$2,dt,b$2,a$3,et,b$3,a$4,bt,b$4,$2,voices,$3,a$5,a$6,a$7,a$8,a$9,a$10,m,b$5,Dialogue$1,a$11,a$12,p;
+   var $1,e,b,a,e$1,b$1,a$1,e$2,b$2,a$2,dt,b$3,a$3,et,b$4,a$4,bt,b$5,$2,voices,$3,a$5,a$6,a$7,a$8,a$9,a$10,m,b$6,Dialogue$1,a$11,a$12,p;
    function push(m$1)
    {
     Client.Utterances().unshift(m$1);
@@ -4514,11 +4515,27 @@
           {
            e.Dispose();
           }
+          Client.CUI().Wait((b=null,Concurrency.Delay(function()
+          {
+           return Concurrency.Bind((new AjaxRemotingProvider.New()).Async("Nash.Web:Nash.Web.GnuCash.getAcccounts:-365027537",[]),function(a$13)
+           {
+            return a$13==null?Concurrency.Zero():(Client.debug((function($4)
+            {
+             return function($5)
+             {
+              return $4("Accounts: "+Utils.printList(function($6)
+              {
+               return GeneratedPrintf.p($6);
+              },$5));
+             };
+            }(Global.id))(a$13.$0)),Concurrency.Zero());
+           });
+          })));
          }
         else
          {
           a=Text.DebugEntities(command);
-          a!=null&&a.$==1?(e$1=a.$0,Client.CUI().Wait((b=null,Concurrency.Delay(function()
+          a!=null&&a.$==1?(e$1=a.$0,Client.CUI().Wait((b$1=null,Concurrency.Delay(function()
           {
            return Concurrency.Bind((new AjaxRemotingProvider.New()).Async("Nash.Web:Nash.Web.Server.getEntities:2107179380",[e$1]),function(a$13)
            {
@@ -4529,7 +4546,7 @@
              {
               return function($5)
               {
-               return $4(Nash$Web_GeneratedPrintf.p($5));
+               return $4(Nash$Web_GeneratedPrintf.p$1($5));
               };
              }(Global.id))(a$14));
              return Concurrency.Zero();
@@ -4542,14 +4559,14 @@
               {
                return function($5)
                {
-                return $4("<span style='color:white;background-color:#7B68EE'>"+Nash$Web_GeneratedPrintf.p($5)+"</span>");
+                return $4("<span style='color:white;background-color:#7B68EE'>"+Nash$Web_GeneratedPrintf.p$1($5)+"</span>");
                };
               }(Global.id))(a$14));
               return Concurrency.Zero();
              });
             })));
            });
-          })))):(a$1=Text.DebugLemmas(command),a$1!=null&&a$1.$==1?(e$2=a$1.$0,Client.CUI().Wait((b$1=null,Concurrency.Delay(function()
+          })))):(a$1=Text.DebugLemmas(command),a$1!=null&&a$1.$==1?(e$2=a$1.$0,Client.CUI().Wait((b$2=null,Concurrency.Delay(function()
           {
            return Concurrency.Bind((new AjaxRemotingProvider.New()).Async("Nash.Web:Nash.Web.Server.getMainLemmas:1432846847",[e$2]),function(a$13)
            {
@@ -4560,7 +4577,7 @@
              {
               return function($5)
               {
-               return $4(Nash$Web_GeneratedPrintf.p$1($5));
+               return $4(Nash$Web_GeneratedPrintf.p$2($5));
               };
              }(Global.id))(a$14));
              return Concurrency.Zero();
@@ -4573,14 +4590,14 @@
               {
                return function($5)
                {
-                return $4("<span style='color:white;background-color:#FFC0CB'>"+Nash$Web_GeneratedPrintf.p$1($5)+"</span>");
+                return $4("<span style='color:white;background-color:#FFC0CB'>"+Nash$Web_GeneratedPrintf.p$2($5)+"</span>");
                };
               }(Global.id))(a$14));
               return Concurrency.Zero();
              });
             })));
            });
-          })))):(a$2=Text.DebugTriples(command),a$2!=null&&a$2.$==1?(dt=a$2.$0,Client.CUI().Wait((b$2=null,Concurrency.Delay(function()
+          })))):(a$2=Text.DebugTriples(command),a$2!=null&&a$2.$==1?(dt=a$2.$0,Client.CUI().Wait((b$3=null,Concurrency.Delay(function()
           {
            return Concurrency.Bind((new AjaxRemotingProvider.New()).Async("Nash.Web:Nash.Web.Server.getTriples:2131326930",[dt]),function(a$13)
            {
@@ -4593,7 +4610,7 @@
               {
                return function($5)
                {
-                return $4(Nash$Web_GeneratedPrintf.p$2($5));
+                return $4(Nash$Web_GeneratedPrintf.p$3($5));
                };
               }(Global.id))(a$15));
               return Concurrency.Zero();
@@ -4609,7 +4626,7 @@
                {
                 return $4("<span style='color:white;background-color:#00FA9A'>"+Utils.printList(function($6)
                 {
-                 return Nash$Web_GeneratedPrintf.p$2($6);
+                 return Nash$Web_GeneratedPrintf.p$3($6);
                 },$5)+"</span>");
                };
               }(Global.id))(a$14));
@@ -4617,40 +4634,9 @@
              });
             })));
            });
-          })))):(a$3=Text.DebugEmotionalTraits(command),a$3!=null&&a$3.$==1?(et=a$3.$0,Client.CUI().Wait((b$3=null,Concurrency.Delay(function()
+          })))):(a$3=Text.DebugEmotionalTraits(command),a$3!=null&&a$3.$==1?(et=a$3.$0,Client.CUI().Wait((b$4=null,Concurrency.Delay(function()
           {
            return Concurrency.Bind((new AjaxRemotingProvider.New()).Async("Nash.Web:Nash.Web.Server.getEmotionalTraits:928948127",[et]),function(a$13)
-           {
-            var t;
-            return a$13.$==1?(Client.debug(a$13.$0),Concurrency.Zero()):(t=a$13.$0,Concurrency.Combine(Concurrency.For(t,function(a$14)
-            {
-             Client.debug((function($4)
-             {
-              return function($5)
-              {
-               return $4(Nash$Web_GeneratedPrintf.p$10($5));
-              };
-             }(Global.id))(a$14));
-             return Concurrency.Zero();
-            }),Concurrency.Delay(function()
-            {
-             Client.echo("Emotional Traits:");
-             return Concurrency.For(t,function(a$14)
-             {
-              Client.echo((function($4)
-              {
-               return function($5)
-               {
-                return $4("<span style='color:white;background-color:#FF4500'>"+Nash$Web_GeneratedPrintf.p$10($5)+"</span>");
-               };
-              }(Global.id))(a$14));
-              return Concurrency.Zero();
-             });
-            })));
-           });
-          })))):(a$4=Text.DebugBehavioralTraits(command),a$4!=null&&a$4.$==1?(bt=a$4.$0,Client.CUI().Wait((b$4=null,Concurrency.Delay(function()
-          {
-           return Concurrency.Bind((new AjaxRemotingProvider.New()).Async("Nash.Web:Nash.Web.Server.getBehavioralTraits:-1969281856",[bt]),function(a$13)
            {
             var t;
             return a$13.$==1?(Client.debug(a$13.$0),Concurrency.Zero()):(t=a$13.$0,Concurrency.Combine(Concurrency.For(t,function(a$14)
@@ -4665,7 +4651,7 @@
              return Concurrency.Zero();
             }),Concurrency.Delay(function()
             {
-             Client.echo("Behavioral Traits:");
+             Client.echo("Emotional Traits:");
              return Concurrency.For(t,function(a$14)
              {
               Client.echo((function($4)
@@ -4673,6 +4659,37 @@
                return function($5)
                {
                 return $4("<span style='color:white;background-color:#FF4500'>"+Nash$Web_GeneratedPrintf.p$11($5)+"</span>");
+               };
+              }(Global.id))(a$14));
+              return Concurrency.Zero();
+             });
+            })));
+           });
+          })))):(a$4=Text.DebugBehavioralTraits(command),a$4!=null&&a$4.$==1?(bt=a$4.$0,Client.CUI().Wait((b$5=null,Concurrency.Delay(function()
+          {
+           return Concurrency.Bind((new AjaxRemotingProvider.New()).Async("Nash.Web:Nash.Web.Server.getBehavioralTraits:-1969281856",[bt]),function(a$13)
+           {
+            var t;
+            return a$13.$==1?(Client.debug(a$13.$0),Concurrency.Zero()):(t=a$13.$0,Concurrency.Combine(Concurrency.For(t,function(a$14)
+            {
+             Client.debug((function($4)
+             {
+              return function($5)
+              {
+               return $4(Nash$Web_GeneratedPrintf.p$12($5));
+              };
+             }(Global.id))(a$14));
+             return Concurrency.Zero();
+            }),Concurrency.Delay(function()
+            {
+             Client.echo("Behavioral Traits:");
+             return Concurrency.For(t,function(a$14)
+             {
+              Client.echo((function($4)
+              {
+               return function($5)
+               {
+                return $4("<span style='color:white;background-color:#FF4500'>"+Nash$Web_GeneratedPrintf.p$12($5)+"</span>");
                };
               }(Global.id))(a$14));
               return Concurrency.Zero();
@@ -4695,15 +4712,15 @@
           {
            return function($5)
            {
-            return $4("Quick Text: "+Nash$Web_GeneratedPrintf.p$12($5)+".");
+            return $4("Quick Text: "+Nash$Web_GeneratedPrintf.p$13($5)+".");
            };
           }(Global.id))($3)),Main.update(push($3)),Client.set_ClientState(ClientState.ClientReady)):(a$10=Text.JournalEntry(command),a$10!=null&&a$10.$==1?(m=a$10.$0,Client.debug((function($4)
           {
            return function($5)
            {
-            return $4("Journal entry: "+Nash$Web_GeneratedPrintf.p$12($5)+".");
+            return $4("Journal entry: "+Nash$Web_GeneratedPrintf.p$13($5)+".");
            };
-          }(Global.id))(m)),Main.update(push(m)),Client.set_ClientState(ClientState.ClientReady)):Client.CUI().Wait((b$5=null,Concurrency.Delay(function()
+          }(Global.id))(m)),Main.update(push(m)),Client.set_ClientState(ClientState.ClientReady)):Client.CUI().Wait((b$6=null,Concurrency.Delay(function()
           {
            Client.set_ClientState(ClientState.ClientUnderstand);
            Text.getUtterance(command,function(meaning)
@@ -4715,7 +4732,7 @@
               m$1=a$13.$0;
               Client.debug(((((Runtime.Curried(function($4,$5,$6,$7)
               {
-               return $4("Text: Intent: "+Nash$Web_GeneratedPrintf.p$13($5)+", Traits: "+Nash$Web_GeneratedPrintf.p$16($6)+", Entities: "+Nash$Web_GeneratedPrintf.p$18($7)+".");
+               return $4("Text: Intent: "+Nash$Web_GeneratedPrintf.p$14($5)+", Traits: "+Nash$Web_GeneratedPrintf.p$17($6)+", Entities: "+Nash$Web_GeneratedPrintf.p$19($7)+".");
               },4))(Global.id))(m$1.get_Intent()))(m$1.get_Traits()))(m$1.get_Entities()));
               Main.update(push(m$1));
              }
@@ -4756,137 +4773,145 @@
    },(r={},r.name="Main",r.greetings="Welcome to Nash. Enter 'hello' or 'hello my name is...(you) to initialize speech.",r.prompt="&#x2328;  ",r)]
   });
  };
- Nash$Web_GeneratedPrintf.p$20=function($1)
- {
-  return $1==null?"null":"Some "+Nash$Web_GeneratedPrintf.p$9($1.$0);
- };
  Nash$Web_GeneratedPrintf.p$21=function($1)
  {
-  return $1.$==5?"ConceptCompletion":$1.$==4?"Disjunctive":$1.$==3?"WritingPrompt ("+Utils.printList(Utils.prettyPrint,$1.$0)+", "+"<fun>"+")":$1.$==2?"Menu ("+Utils.printList(Utils.prettyPrint,$1.$0)+", "+"<fun>"+")":$1.$==1?"Verification (<fun>, <fun>)":"UserAuthentication "+Utils.prettyPrint($1.$0);
+  return $1==null?"null":"Some "+Nash$Web_GeneratedPrintf.p$10($1.$0);
  };
  Nash$Web_GeneratedPrintf.p$22=function($1)
  {
-  return"Utterance' ("+Utils.prettyPrint($1.$0)+", "+Utils.printList(function($2)
-  {
-   return Nash$Web_GeneratedPrintf.p$23($2);
-  },$1.$1)+", "+Utils.printList(function($2)
-  {
-   return Nash$Web_GeneratedPrintf.p$24($2);
-  },$1.$2)+", "+Utils.printList(function($2)
-  {
-   return Nash$Web_GeneratedPrintf.p$25($2);
-  },$1.$3)+")";
- };
- Nash$Web_GeneratedPrintf.p$25=function($1)
- {
-  return"Trait' ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Utils.prettyPrint($1.$2)+")";
- };
- Nash$Web_GeneratedPrintf.p$24=function($1)
- {
-  return"Entity' ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Utils.prettyPrint($1.$2)+", "+Utils.prettyPrint($1.$3)+")";
+  return $1.$==5?"ConceptCompletion":$1.$==4?"Disjunctive":$1.$==3?"WritingPrompt ("+Utils.printList(Utils.prettyPrint,$1.$0)+", "+"<fun>"+")":$1.$==2?"Menu ("+Utils.printList(Utils.prettyPrint,$1.$0)+", "+"<fun>"+")":$1.$==1?"Verification (<fun>, <fun>)":"UserAuthentication "+Utils.prettyPrint($1.$0);
  };
  Nash$Web_GeneratedPrintf.p$23=function($1)
  {
-  return"Intent' ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+")";
+  return"Utterance' ("+Utils.prettyPrint($1.$0)+", "+Utils.printList(function($2)
+  {
+   return Nash$Web_GeneratedPrintf.p$24($2);
+  },$1.$1)+", "+Utils.printList(function($2)
+  {
+   return Nash$Web_GeneratedPrintf.p$25($2);
+  },$1.$2)+", "+Utils.printList(function($2)
+  {
+   return Nash$Web_GeneratedPrintf.p$26($2);
+  },$1.$3)+")";
  };
  Nash$Web_GeneratedPrintf.p$26=function($1)
  {
-  return"Question ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Nash$Web_GeneratedPrintf.p$21($1.$2)+", "+Nash$Web_GeneratedPrintf.p$27($1.$3)+", "+"<fun>"+")";
+  return"Trait' ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Utils.prettyPrint($1.$2)+")";
+ };
+ Nash$Web_GeneratedPrintf.p$25=function($1)
+ {
+  return"Entity' ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Utils.prettyPrint($1.$2)+", "+Utils.prettyPrint($1.$3)+")";
+ };
+ Nash$Web_GeneratedPrintf.p$24=function($1)
+ {
+  return"Intent' ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+")";
  };
  Nash$Web_GeneratedPrintf.p$27=function($1)
+ {
+  return"Question ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Nash$Web_GeneratedPrintf.p$22($1.$2)+", "+Nash$Web_GeneratedPrintf.p$28($1.$3)+", "+"<fun>"+")";
+ };
+ Nash$Web_GeneratedPrintf.p$28=function($1)
  {
   return $1==null?"null":"Some "+Utils.printArray(Utils.prettyPrint,$1.$0);
  };
  Nash$Web_GeneratedPrintf.p=function($1)
+ {
+  return $1.$==4?"OTHER":$1.$==3?"CASH":$1.$==2?"EXPENSE":$1.$==1?"INCOME":"BANK";
+ };
+ GeneratedPrintf.p=function($1)
+ {
+  return"{"+("Guid = "+Utils.prettyPrint($1.Guid))+"; "+("Name = "+Utils.prettyPrint($1.Name))+"; "+("Type = "+Nash$Web_GeneratedPrintf.p($1.Type))+"; "+("ParentGuid = "+Utils.prettyPrint($1.ParentGuid))+"; "+("Description = "+Utils.prettyPrint($1.Description))+"}";
+ };
+ Nash$Web_GeneratedPrintf.p$1=function($1)
  {
   return"ExpertAIEntity ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Utils.printList(function($2)
   {
    return"("+Utils.prettyPrint($2[0])+", "+Utils.prettyPrint($2[1])+")";
   },$1.$2)+", "+Utils.prettyPrint($1.$3)+")";
  };
- Nash$Web_GeneratedPrintf.p$1=function($1)
+ Nash$Web_GeneratedPrintf.p$2=function($1)
  {
   return"ExpertAILemma ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Utils.printList(function($2)
   {
    return"("+Utils.prettyPrint($2[0])+", "+Utils.prettyPrint($2[1])+")";
   },$1.$2)+")";
  };
- Nash$Web_GeneratedPrintf.p$5=function($1)
+ Nash$Web_GeneratedPrintf.p$6=function($1)
  {
   return"Relation ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Utils.prettyPrint($1.$2)+")";
  };
- Nash$Web_GeneratedPrintf.p$4=function($1)
+ Nash$Web_GeneratedPrintf.p$5=function($1)
  {
-  return $1.$==1?"Relation "+Nash$Web_GeneratedPrintf.p$5($1.$0):"Subject "+Utils.prettyPrint($1.$0);
- };
- Nash$Web_GeneratedPrintf.p$6=function($1)
- {
-  return"Verb "+Utils.prettyPrint($1.$0);
- };
- Nash$Web_GeneratedPrintf.p$3=function($1)
- {
-  return"Relation ("+Nash$Web_GeneratedPrintf.p$4($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Nash$Web_GeneratedPrintf.p$6($1.$2)+")";
- };
- Nash$Web_GeneratedPrintf.p$9=function($1)
- {
-  return $1.$==1?"Relation "+Nash$Web_GeneratedPrintf.p$5($1.$0):"Object "+Utils.prettyPrint($1.$0);
- };
- Nash$Web_GeneratedPrintf.p$8=function($1)
- {
-  return"Relation ("+Nash$Web_GeneratedPrintf.p$6($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Nash$Web_GeneratedPrintf.p$9($1.$2)+")";
+  return $1.$==1?"Relation "+Nash$Web_GeneratedPrintf.p$6($1.$0):"Subject "+Utils.prettyPrint($1.$0);
  };
  Nash$Web_GeneratedPrintf.p$7=function($1)
  {
-  return $1==null?"null":"Some "+Nash$Web_GeneratedPrintf.p$8($1.$0);
+  return"Verb "+Utils.prettyPrint($1.$0);
  };
- Nash$Web_GeneratedPrintf.p$2=function($1)
+ Nash$Web_GeneratedPrintf.p$4=function($1)
  {
-  return"Triple ("+Nash$Web_GeneratedPrintf.p$3($1.$0)+", "+Nash$Web_GeneratedPrintf.p$7($1.$1)+")";
+  return"Relation ("+Nash$Web_GeneratedPrintf.p$5($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Nash$Web_GeneratedPrintf.p$7($1.$2)+")";
  };
  Nash$Web_GeneratedPrintf.p$10=function($1)
  {
-  return"EmotionalTrait ("+Utils.prettyPrint($1.$0)+", "+Utils.printList(Utils.prettyPrint,$1.$1)+", "+Utils.prettyPrint($1.$2)+")";
+  return $1.$==1?"Relation "+Nash$Web_GeneratedPrintf.p$6($1.$0):"Object "+Utils.prettyPrint($1.$0);
+ };
+ Nash$Web_GeneratedPrintf.p$9=function($1)
+ {
+  return"Relation ("+Nash$Web_GeneratedPrintf.p$7($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Nash$Web_GeneratedPrintf.p$10($1.$2)+")";
+ };
+ Nash$Web_GeneratedPrintf.p$8=function($1)
+ {
+  return $1==null?"null":"Some "+Nash$Web_GeneratedPrintf.p$9($1.$0);
+ };
+ Nash$Web_GeneratedPrintf.p$3=function($1)
+ {
+  return"Triple ("+Nash$Web_GeneratedPrintf.p$4($1.$0)+", "+Nash$Web_GeneratedPrintf.p$8($1.$1)+")";
  };
  Nash$Web_GeneratedPrintf.p$11=function($1)
  {
-  return"BehavioralTrait ("+Utils.prettyPrint($1.$0)+", "+Utils.printList(Utils.prettyPrint,$1.$1)+", "+Utils.prettyPrint($1.$2)+")";
- };
- Nash$Web_GeneratedPrintf.p$15=function($1)
- {
-  return $1==null?"null":"Some "+Utils.prettyPrint($1.$0);
- };
- Nash$Web_GeneratedPrintf.p$14=function($1)
- {
-  return"Intent ("+Utils.prettyPrint($1.$0)+", "+Nash$Web_GeneratedPrintf.p$15($1.$1)+")";
- };
- Nash$Web_GeneratedPrintf.p$13=function($1)
- {
-  return $1==null?"null":"Some "+Nash$Web_GeneratedPrintf.p$14($1.$0);
- };
- Nash$Web_GeneratedPrintf.p$17=function($1)
- {
-  return"Trait ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Nash$Web_GeneratedPrintf.p$15($1.$2)+")";
- };
- Nash$Web_GeneratedPrintf.p$16=function($1)
- {
-  return $1==null?"null":"Some "+Utils.printList(function($2)
-  {
-   return Nash$Web_GeneratedPrintf.p$17($2);
-  },$1.$0);
- };
- Nash$Web_GeneratedPrintf.p$19=function($1)
- {
-  return"Entity ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Utils.prettyPrint($1.$2)+", "+Nash$Web_GeneratedPrintf.p$15($1.$3)+")";
- };
- Nash$Web_GeneratedPrintf.p$18=function($1)
- {
-  return $1==null?"null":"Some "+Utils.printList(function($2)
-  {
-   return Nash$Web_GeneratedPrintf.p$19($2);
-  },$1.$0);
+  return"EmotionalTrait ("+Utils.prettyPrint($1.$0)+", "+Utils.printList(Utils.prettyPrint,$1.$1)+", "+Utils.prettyPrint($1.$2)+")";
  };
  Nash$Web_GeneratedPrintf.p$12=function($1)
  {
-  return"Utterance ("+Utils.prettyPrint($1.$0)+", "+Nash$Web_GeneratedPrintf.p$13($1.$1)+", "+Nash$Web_GeneratedPrintf.p$16($1.$2)+", "+Nash$Web_GeneratedPrintf.p$18($1.$3)+")";
+  return"BehavioralTrait ("+Utils.prettyPrint($1.$0)+", "+Utils.printList(Utils.prettyPrint,$1.$1)+", "+Utils.prettyPrint($1.$2)+")";
+ };
+ Nash$Web_GeneratedPrintf.p$16=function($1)
+ {
+  return $1==null?"null":"Some "+Utils.prettyPrint($1.$0);
+ };
+ Nash$Web_GeneratedPrintf.p$15=function($1)
+ {
+  return"Intent ("+Utils.prettyPrint($1.$0)+", "+Nash$Web_GeneratedPrintf.p$16($1.$1)+")";
+ };
+ Nash$Web_GeneratedPrintf.p$14=function($1)
+ {
+  return $1==null?"null":"Some "+Nash$Web_GeneratedPrintf.p$15($1.$0);
+ };
+ Nash$Web_GeneratedPrintf.p$18=function($1)
+ {
+  return"Trait ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Nash$Web_GeneratedPrintf.p$16($1.$2)+")";
+ };
+ Nash$Web_GeneratedPrintf.p$17=function($1)
+ {
+  return $1==null?"null":"Some "+Utils.printList(function($2)
+  {
+   return Nash$Web_GeneratedPrintf.p$18($2);
+  },$1.$0);
+ };
+ Nash$Web_GeneratedPrintf.p$20=function($1)
+ {
+  return"Entity ("+Utils.prettyPrint($1.$0)+", "+Utils.prettyPrint($1.$1)+", "+Utils.prettyPrint($1.$2)+", "+Nash$Web_GeneratedPrintf.p$16($1.$3)+")";
+ };
+ Nash$Web_GeneratedPrintf.p$19=function($1)
+ {
+  return $1==null?"null":"Some "+Utils.printList(function($2)
+  {
+   return Nash$Web_GeneratedPrintf.p$20($2);
+  },$1.$0);
+ };
+ Nash$Web_GeneratedPrintf.p$13=function($1)
+ {
+  return"Utterance ("+Utils.prettyPrint($1.$0)+", "+Nash$Web_GeneratedPrintf.p$14($1.$1)+", "+Nash$Web_GeneratedPrintf.p$17($1.$2)+", "+Nash$Web_GeneratedPrintf.p$19($1.$3)+")";
  };
 }(self));
