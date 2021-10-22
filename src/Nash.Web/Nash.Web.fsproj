@@ -15,14 +15,15 @@
     <Compile Include="NLU.fs" />
     <Compile Include="Knowledge.fs" />
     <Compile Include="CUI.fs" />
+    <Compile Include="GnuCash.fs" />
     <Compile Include="Server.fs" />
     <Compile Include="Dialogue.fs" />
     <Compile Include="Questions.fs" />
     <Compile Include="Symptoms.fs" />
     <Compile Include="Journal.fs" />
     <Compile Include="Tests.fs" />
+    <Compile Include="Accounting.fs" />
     <Compile Include="User.fs" />
-    <Compile Include="GnuCash.fs" />
     <Compile Include="Main.fs" />
     <Compile Include="Client.fs" />
     <Compile Include="Site.fs" />

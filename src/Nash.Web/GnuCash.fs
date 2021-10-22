@@ -44,3 +44,14 @@ module GnuCash =
             function 
             | Ok a  -> (if a.Length > 0 then infof "Retrieved {0} accounts from database." [a.Length]; Some a else None) 
             | Error exn -> errex "Error retrieving accounts from database." exn []; None)
+
+    let accounts = 
+        match Async.RunSynchronously(getAcccounts()) with
+        | Some a -> a
+        | None -> failwith ""
+
+    [<Rpc>]
+    let getaccountTypes() = accounts |> List.map(fun a -> a.Type.ToString()) |> List.distinct
+
+    [<Rpc>]
+    let getAccountsByCategory(category:string) = accounts |> List.filter(fun a -> a.Type.ToString().ToUpper() = category.ToUpper() && not (a.Name.StartsWith("Imbalance")))

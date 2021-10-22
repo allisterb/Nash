@@ -19,11 +19,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nash.Logger.Serilog", "Nash.Logger.Serilog\Nash.Logger.Serilog.csproj", "{6B1631C8-368C-49AC-B02E-5149B785BD7E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{7129674D-9C12-4971-800D-8C7DD7C40FB7}"
-	ProjectSection(SolutionItems) = preProject
-		..\deploy\oc-create-app.cmd = ..\deploy\oc-create-app.cmd
-		..\deploy\oc-deploy-build.cmd = ..\deploy\oc-deploy-build.cmd
-		..\deploy\oc-pgdb-port-forward.cmd = ..\deploy\oc-pgdb-port-forward.cmd
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{4B8B9364-8E9C-4C64-8BE4-FEF17BE4EE9C}"
 	ProjectSection(SolutionItems) = preProject

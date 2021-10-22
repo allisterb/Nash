@@ -61,7 +61,7 @@ module User =
         let (|Response'|_|) = Dialogue.(|Response'_|_|) d
        
         let user():User = prop "user"
-        let triggerTests = Dialogue.trigger d debug Tests.update
+        let triggerAccounting = Dialogue.trigger d debug Accounting.update
         let triggerJournal = Dialogue.trigger d debug Journal.update
 
         (* User functions *)
@@ -83,13 +83,13 @@ module User =
                     if JQuery("#profile").HasClass("invisible") then
                         JQuery("#profile").RemoveClass("invisible").AddClass("visible") |> ignore
                     doc <| Doc.Concat [
-                        Bs.btnPrimary "knowledge" (fun _ _ -> triggerTests "list_kb_categories" "list_kb_categories")
+                        Bs.btnPrimary "accounts" (fun _ _ -> triggerAccounting "list_account_types" "list_account_types")
                         Html.text "     "
-                        Bs.btnPrimary "tests" (fun _ _ -> triggerTests "list_test_categories" "list_test_categories")
+                        Bs.btnPrimary "transactions" (fun _ _ -> triggerAccounting "list_test_categories" "list_test_categories")
                         Html.text "     "
-                        Bs.btnPrimary "symptoms" (fun _ _ -> triggerJournal "symptom_journal" "symptom_journal")
+                        Bs.btnPrimary "budgets" (fun _ _ -> triggerJournal "symptom_journal" "symptom_journal")
                         Html.text "     "
-                        Bs.btnPrimary "mood" (fun _ _ -> triggerJournal "mood_journal" "mood_journal")
+                        Bs.btnPrimary "reports" (fun _ _ -> triggerJournal "mood_journal" "mood_journal")
                         Html.text "     "
                         Bs.btnPrimary "caregiver" (fun _ _ -> triggerJournal "caregiver_journal" "caregiver_journal")
                         Html.text "     "

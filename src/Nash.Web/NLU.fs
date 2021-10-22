@@ -100,14 +100,14 @@ module NLU =
 
     let (|Number|_|) :Utterance -> int option= 
         function 
-        | Intent_ "1" (None, None) 
-        | Intent_ "2" (None, None)
-        | Intent_ "3" (None, None) 
-        | Intent_ "4" (None, None) 
-        | Intent_ "5" (None, None) 
-        | Intent_ "6" (None, None)
-        | Intent_ "7" (None, None)
-        | Intent_ "8" (None, None)
+        | Intent_ "1" (None, None) as m -> Some (Int32.Parse(m.Intent.Value.Name))
+        | Intent_ "2" (None, None) as m -> Some (Int32.Parse(m.Intent.Value.Name))
+        | Intent_ "3" (None, None) as m -> Some (Int32.Parse(m.Intent.Value.Name))
+        | Intent_ "4" (None, None) as m -> Some (Int32.Parse(m.Intent.Value.Name))
+        | Intent_ "5" (None, None) as m -> Some (Int32.Parse(m.Intent.Value.Name))
+        | Intent_ "6" (None, None) as m -> Some (Int32.Parse(m.Intent.Value.Name))
+        | Intent_ "7" (None, None) as m -> Some (Int32.Parse(m.Intent.Value.Name))
+        | Intent_ "8" (None, None) as m -> Some (Int32.Parse(m.Intent.Value.Name))
         | Intent_ "9" (None, None) as m -> Some (Int32.Parse(m.Intent.Value.Name))
         |  _ -> None
 
@@ -264,6 +264,11 @@ module NLU =
         let (|JournalEntry|_|) : string -> Utterance option=
             function
             | s when s.StartsWith "journal " && s.Replace("journal ", "") <> ""-> let j = s.Replace("journal ", "") in Utterance("journal", Some(Intent("journal", Some 1.0f)), None, Some([Entity("journal_entry", "", j, Some 1.0f)])) |> Some 
+            | _ -> None
+
+        let (|QuickAccounts|_|) =
+            function
+            | "accounts" -> Utterance("accounts", Some(Intent("accounts", Some 1.0f)), None, None) |> Some 
             | _ -> None
 
         [<JavaScript>]

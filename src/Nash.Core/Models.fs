@@ -18,6 +18,7 @@ module Models =
     type AccountType =
         | BANK
         | INCOME
+        | ASSET
         | EXPENSE
         | CASH
         | OTHER
@@ -25,6 +26,10 @@ module Models =
         static member Parse(s:string) =
             match s.ToUpper() with
             | "BANK" -> BANK
+            | "INCOME" -> INCOME
+            | "ASSET" -> ASSET
+            | "EXPENSE" -> EXPENSE
+            | "CASH" -> CASH
             | _ -> OTHER
 
     type Account = {

@@ -27,7 +27,7 @@ module Client =
             let web = new WebAvatar()
             web.Version <- 8.5
             web.Connection <- sdk
-            web.Avatar <- "20926186" // "20926221" // "20053084"
+            web.Avatar <- "20031372" // "20926221" // "20053084"
             web.Voice <- "cmu-slt";
             web.VoiceMod <- "default";
             web.Width <- if JQuery(JS.Window).Width() <= 479 then 90 else 175
@@ -234,6 +234,7 @@ module Client =
                 sprintf "There are currently %i voices installed on this computer or device." voices.Length |> say'
                 voices |> Array.iteri (fun i v -> sprintf "Voice %i. Name: %s, Local: %A." i v.Name v.LocalService |> say')
             
+           
             | _ ->
                 match ClientState with
                 | ClientUnderstand -> say' "I'm still trying to understand what you said before."

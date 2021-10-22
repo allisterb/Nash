@@ -27,12 +27,15 @@
   });
  };
  AccountType.OTHER={
-  $:4
+  $:5
  };
  AccountType.CASH={
-  $:3
+  $:4
  };
  AccountType.EXPENSE={
+  $:3
+ };
+ AccountType.ASSET={
   $:2
  };
  AccountType.INCOME={
@@ -43,7 +46,9 @@
  };
  AccountType.Parse=function(s)
  {
-  return s.toUpperCase()==="BANK"?AccountType.BANK:AccountType.OTHER;
+  var m;
+  m=s.toUpperCase();
+  return m==="BANK"?AccountType.BANK:m==="INCOME"?AccountType.INCOME:m==="ASSET"?AccountType.ASSET:m==="EXPENSE"?AccountType.EXPENSE:m==="CASH"?AccountType.CASH:AccountType.OTHER;
  };
  Account.New=function(Guid,Name,Type,ParentGuid,Description)
  {

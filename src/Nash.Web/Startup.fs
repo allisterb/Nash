@@ -22,9 +22,11 @@ type Startup() =
         |> ignore
 
     member this.Configure(app: IApplicationBuilder, env: IHostEnvironment) =
+        
         if env.IsDevelopment() then app.UseDeveloperExceptionPage() |> ignore
         app.UseAuthentication()
             .UseStaticFiles()
+            
             .UseWebSharper()
             .Run(fun context ->
                 context.Response.StatusCode <- 404
