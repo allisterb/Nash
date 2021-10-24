@@ -115,7 +115,7 @@ module Client =
             | ClientUnderstand -> echo "I'm still trying to understand what you said before."
             | ClientNotInitialzed -> error "Client is not intialized."
             )
-        do mic.Connect("4Y2BLQY5TWLIN7HFIV264S53MY4PCUAT")
+        do mic.Connect("AR6WFBX5MP46GIRF6S22HZLZ5I4I5UDW")
     
     /// Mic interpreter
     let main' (command:obj*obj) =

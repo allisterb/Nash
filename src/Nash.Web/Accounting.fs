@@ -65,6 +65,34 @@ module Accounting =
         let user():User = prop "user"
         let triggerJournal = Dialogue.trigger d debug Journal.update
           
+        let showMainMenu() =
+            doc <| Doc.Concat [
+                Bs.btnPrimary "accounts" (fun _ _ -> trigger "list_account_types" "list_account_types")
+                Html.text "     "
+                Bs.btnPrimary "transactions" (fun _ _ -> trigger "list_test_categories" "list_test_categories")
+                Html.text "     "
+                Bs.btnPrimary "budgets" (fun _ _ -> triggerJournal "symptom_journal" "symptom_journal")
+                Html.text "     "
+                Bs.btnPrimary "reports" (fun _ _ -> triggerJournal "mood_journal" "mood_journal")
+                Html.text "     "
+                Bs.btnPrimary "caregiver" (fun _ _ -> triggerJournal "caregiver_journal" "caregiver_journal")
+                Html.text "     "
+                Bs.btnSecondary "settings" (fun _ _ -> trigger "list_settings_categories" "list_settings_categories")
+                Html.text "     "
+                Bs.btnInfo "help" (fun _ _ -> trigger "help" "help")
+            ]
+        let showAccount name desc = 
+            doc <| div [cls "jumbotron"] [
+                h1 [cls "display-4"] [text name]
+                p [cls "lead"] [text desc]
+                hr [cls "my-4"] []
+                Bs.btnPrimary "balance" (fun _ _ -> trigger "account_balance" "account_balance")
+                Html.text "     "
+                Bs.btnPrimary "journal" (fun _ _ -> trigger "account_journal" "account_journal")
+                Html.text "     "
+                Bs.btnPrimary "transactions" (fun _ _ -> trigger "account_transactions" "account_transactions")
+            ]
+
         let testCategories = ["Physical Health Tests"; "Mental Health Tests"; "Cognitive Tests"; "Psychological Tests"]
         
         let physicalHealthTests = ["Bladder Control Scale"; "Bowel Control Scale"; "Modified Fatigue Impact Scale"; "MOS Pain Effects Scale"; "Sexual Satisfaction Scale"]
@@ -88,26 +116,69 @@ module Accounting =
 
         match Dialogue.frame utterances with        
         
-        | Intent "list_account_types" _::[] -> 
-            handle "list_account_types" (fun _ -> 
-                ask <| menu "menuAccountTypes" accountTypes "Choose one of the account types from the list." trigger   
+        | Intent "create_account" (_, Entity1OfAny "account_name" an)::[] when an.Value = "pets" -> 
+            handle "create_account" (fun _ -> 
+                
+                showAccount "Pets" ""
+                
             )
 
-        | Response "menuTestCategories" (Intent "cancel" _,_,_)::[] -> endt "menuTestCategories" (fun _ ->
-            doc <| Doc.Concat [
-                Bs.btnPrimary "tests" (fun _ _ -> trigger "list_test_categories" "list_test_categories")
-                Html.text "     "
-                Bs.btnInfo "help" (fun _ _ -> trigger "help" "help")
-            ]
-          )
+        | Intent "accounts" _::[] -> 
+            handle "accounts" (fun _ -> 
+                ask <| menu "menuAccountTypes" accountTypes "These are the kinds of accounts that are available. Choose one of the account types from the list." trigger   
+            )
 
         | Response "menuAccountTypes" (Number n,_,_)::[] -> 
             endt "menuAccountTypes" (fun _ -> 
+                
                 let at = accountTypes.[n - 1]
+                if have "accountType" then remove "accountType"
+                add "accountType" at
                 let accts = GnuCash.getAccountsByCategory at
-                ask <| menu "menuAccounts" (accts |> List.map(fun a -> a.Name)) "Choose an account from the list." trigger
+                if have "accounts" then remove "accounts"
+                add "accounts" accts
+                ask <| menu "menuAccounts" (accts |> List.map(fun a -> a.Name)) "Choose an account from the list. Click on the account name or enter the number of the account." trigger
             )
-        
+        | Response "menuAccountTypes" (Intent "cancel" _,_,_)::[] -> 
+            endt "menuAccountTypes" (fun _ -> showMainMenu()
+            )
+            
+        | Response "menuAccounts" (Number n,_,_)::[] -> 
+            endt "menuAccounts" (fun _ -> 
+                let accts:Account list = prop "accounts"
+                let acct = accts.[n - 1]
+                debug <| sprintf "Selected %s." acct.Name
+                add "account" acct.Name
+                doc <| div [cls "jumbotron"] [
+                    h1 [cls "display-4"] [text acct.Name]
+                    p [cls "lead"] [text acct.Description]
+                    hr [cls "my-4"] []
+                    Bs.btnPrimary "balance" (fun _ _ -> trigger "account_balance" "account_balance")
+                    Html.text "     "
+                    Bs.btnPrimary "journal" (fun _ _ -> trigger "account_journal" "account_journal")
+                    Html.text "     "
+                    Bs.btnPrimary "transactions" (fun _ _ -> trigger "account_transactions" "account_transactions")
+                ]
+            )
+        | Response "menuAccounts" (Intent "cancel" _,_,_)::[] -> 
+            endt "menuAccounts" (fun _ ->
+           
+                ask <| menu "menuAccountTypes" accountTypes "These are the kinds of accounts that are available. Choose one of the account types from the list." trigger 
+
+            )
+        | Intent "account_balance"  _ ::[] ->
+            handle "account_balance" (fun _ ->
+                let acctName:string = prop "account"
+                let accts: Account list = prop "accounts"
+                let acct = accts |> List.find(fun a -> a.Name = acctName)
+                match acctName with
+                | "Checking Account" -> 
+                    say "The balance on your Checking Account is $3900."
+                    echo "The balance on your Checking Account is $3900."
+                | _ -> ()
+            
+            )
+
         | Response "menuPhysicalHealthTests" (Intent "cancel" _,_,_)::[] 
         | Response "menuMentalHealthTests" (Intent "cancel" _,_,_)::[]
         | Response "menuCognitiveTests" (Intent "cancel" _,_,_)::[]

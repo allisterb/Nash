@@ -109,6 +109,7 @@ module Main =
         (* Journal entry *)
         | Intent "journal" _::[] -> dispatch Journal.name Journal.update
 
+        | u::[] when u.Traits.IsSome && u.Traits.Value |> List.exists(fun t -> t.Name = "domain" && t.Value = "accounting") -> dispatch Accounting.name Accounting.update 
         | _ -> didNotUnderstand()
 
         Dialogue.debugInterpreterEnd d debug name

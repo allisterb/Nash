@@ -312,12 +312,14 @@ module NLU =
 
         let private local_search_query_entity_types = ["wit$local_search_query:local_search_query";"wit$datetime:query_resource"]
 
-        let private entity_types = agenda_entry_entity_types @ contact_entity_types @ datetime_entity_types @ local_search_query_entity_types
+        let private create_account_entity_types = ["account_name:account_name"; "account_type:account_type"; "account_parent:account_parent"]
 
-        let private trait_types = ["domain"; "dialogue_act"]
+        let private entity_types = agenda_entry_entity_types @ contact_entity_types @ datetime_entity_types @ local_search_query_entity_types @ create_account_entity_types
+
+        let private trait_types = ["domain"; "speech_act"]
 
         let getUtterance sentence m =
-            Witai.getMeaning "W2WAT2D6U634KSKMR44NWFHJWQAVLVV3" sentence 
+            Witai.getMeaning "AR6WFBX5MP46GIRF6S22HZLZ5I4I5UDW" sentence 
                (Action<obj, string, JQuery.JqXHR>(
                     fun o _ _ -> 
                         debug "NLU" <| sprintf  "Wit.ai returned: %A" o
@@ -355,7 +357,7 @@ module NLU =
 
         let mutable intentConfidenceThreshold = 0.85f
 
-        let mutable entityConfidenceThreshold = 0.85f
+        let mutable entityConfidenceThreshold = 0.7f
         
         let (|HasUtterance|_|) :Utterance' option ->(Utterance option) =
             function

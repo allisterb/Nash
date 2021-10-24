@@ -83,15 +83,17 @@ module User =
                     if JQuery("#profile").HasClass("invisible") then
                         JQuery("#profile").RemoveClass("invisible").AddClass("visible") |> ignore
                     doc <| Doc.Concat [
-                        Bs.btnPrimary "accounts" (fun _ _ -> triggerAccounting "list_account_types" "list_account_types")
+                        Bs.btnPrimary "accounts" (fun _ _ -> triggerAccounting "accounts" "accounts")
                         Html.text "     "
-                        Bs.btnPrimary "transactions" (fun _ _ -> triggerAccounting "list_test_categories" "list_test_categories")
+                        Bs.btnPrimary "transactions" (fun _ _ -> triggerAccounting "transactions" "list_test_categories")
                         Html.text "     "
                         Bs.btnPrimary "budgets" (fun _ _ -> triggerJournal "symptom_journal" "symptom_journal")
                         Html.text "     "
                         Bs.btnPrimary "reports" (fun _ _ -> triggerJournal "mood_journal" "mood_journal")
                         Html.text "     "
-                        Bs.btnPrimary "caregiver" (fun _ _ -> triggerJournal "caregiver_journal" "caregiver_journal")
+                        Bs.btnPrimary "invoices" (fun _ _ -> triggerJournal "caregiver_journal" "caregiver_journal")
+                        Html.text "     "
+                        Bs.btnPrimary "documents" (fun _ _ -> triggerJournal "caregiver_journal" "caregiver_journal")
                         Html.text "     "
                         Bs.btnSecondary "settings" (fun _ _ -> trigger "list_settings_categories" "list_settings_categories")
                         Html.text "     "

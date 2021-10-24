@@ -960,7 +960,7 @@
  };
  Text.getUtterance=function(sentence,m)
  {
-  Witai.getMeaning("W2WAT2D6U634KSKMR44NWFHJWQAVLVV3",sentence,function(o)
+  Witai.getMeaning("AR6WFBX5MP46GIRF6S22HZLZ5I4I5UDW",sentence,function(o)
   {
    var intents,traits,utterance;
    ClientExtensions.debug("NLU",(function($1)
@@ -1044,6 +1044,11 @@
  {
   SC$4.$cctor();
   return SC$4.entity_types;
+ };
+ Text.create_account_entity_types=function()
+ {
+  SC$4.$cctor();
+  return SC$4.create_account_entity_types;
  };
  Text.local_search_query_entity_types=function()
  {
@@ -1702,10 +1707,11 @@
   SC$4.contact_entity_types=List.ofArray(["wit$contact:contact","wit$contact:query_param_name"]);
   SC$4.datetime_entity_types=List.ofArray(["wit$datetime:datetime","wit$datetime:query_param_date"]);
   SC$4.local_search_query_entity_types=List.ofArray(["wit$local_search_query:local_search_query","wit$datetime:query_resource"]);
-  SC$4.entity_types=List.append(Text.agenda_entry_entity_types(),List.append(Text.contact_entity_types(),List.append(Text.datetime_entity_types(),Text.local_search_query_entity_types())));
-  SC$4.trait_types=List.ofArray(["domain","dialogue_act"]);
+  SC$4.create_account_entity_types=List.ofArray(["account_name:account_name","account_type:account_type","account_parent:account_parent"]);
+  SC$4.entity_types=List.append(Text.agenda_entry_entity_types(),List.append(Text.contact_entity_types(),List.append(Text.datetime_entity_types(),List.append(Text.local_search_query_entity_types(),Text.create_account_entity_types()))));
+  SC$4.trait_types=List.ofArray(["domain","speech_act"]);
   SC$4.intentConfidenceThreshold=0.85;
-  SC$4.entityConfidenceThreshold=0.85;
+  SC$4.entityConfidenceThreshold=0.7;
  };
  EmotionalTrait=Knowledge.EmotionalTrait=Runtime.Class({
   get_Frequency:function()
@@ -3703,7 +3709,7 @@
  };
  Accounting.update=function(d)
  {
-  var cui,handle,trigger,endt,ask,triggerJournal,testCategories,sdmtCharacters,accountTypes,m,$1,$2,$3,a,$4,$5,a$1,a$2,$6,a$3,$7,a$4,$8,a$5,$9,a$6,$10,a$7,$11,a$8,$12,a$9,$13,a$10,$14,a$11,$15,a$12,$16,a$13,$17,a$14,$18,a$15,$19,a$16,$20,a$17,$21,$22,a$18,a$19,$23,$24,$25,a$20,$26,$27,$28,$29,a$21,$30,$31,$32,$33,$34,$35,$36,$37;
+  var cui,remove,handle,trigger,endt,ask,triggerJournal,testCategories,sdmtCharacters,accountTypes,m,$1,a,a$1,$2,$3,$4,a$2,a$3,$5,a$4,$6,$7,a$5,a$6,$8,a$7,$9,$10,$11,$12,a$8,$13,a$9,$14,a$10,$15,a$11,$16,a$12,$17,a$13,$18,a$14,$19,a$15,$20,a$16,$21,a$17,$22,a$18,$23,a$19,$24,a$20,$25,a$21,$26,a$22,$27,$28,a$23,a$24,$29,$30,$31,a$25,$32,$33,$34,$35,a$26,$36,$37,$38,$39,$40,$41,$42,$43;
   function echo(t$1)
   {
    DialogueModule.echo(d,t$1);
@@ -3712,9 +3718,17 @@
   {
    DialogueModule.say(d,t$1);
   }
-  function doc(a$22)
+  function doc(a$27)
   {
-   cui.EchoDoc(a$22);
+   cui.EchoDoc(a$27);
+  }
+  function have(k)
+  {
+   return DialogueModule.have(d,k);
+  }
+  function prop(k)
+  {
+   return DialogueModule.prop(d,k);
   }
   function add(k,v)
   {
@@ -3723,6 +3737,10 @@
     Accounting.debug(m$1);
    },k,v);
   }
+  function d$1(m$1)
+  {
+   Accounting.debug(m$1);
+  }
   function popu()
   {
    DialogueModule.popu(d,function(m$1)
@@ -3730,23 +3748,23 @@
     Accounting.debug(m$1);
    });
   }
-  function d$1(m$1)
-  {
-   Accounting.debug(m$1);
-  }
   function d$2(m$1)
   {
    Accounting.debug(m$1);
-  }
-  function t(d$6)
-  {
-   Accounting.update(d$6);
   }
   function d$3(m$1)
   {
    Accounting.debug(m$1);
   }
+  function t(d$7)
+  {
+   Accounting.update(d$7);
+  }
   function d$4(m$1)
+  {
+   Accounting.debug(m$1);
+  }
+  function d$5(m$1)
   {
    Accounting.debug(m$1);
   }
@@ -3754,33 +3772,105 @@
   {
    return Questions.menu(d,"Tests",n,c,p,t$1);
   }
-  function Intent$2(n,a$22)
+  function Intent$2(n,a$27)
   {
-   return DialogueModule.Intent_(d,n,a$22);
+   return DialogueModule.Intent_(d,n,a$27);
   }
-  function Response(n,a$22)
+  function Response(n,a$27)
   {
-   return DialogueModule.Response_(d,n,a$22);
+   return DialogueModule.Response_(d,n,a$27);
   }
-  function d$5(m$1)
+  function d$6(m$1)
   {
    Accounting.debug(m$1);
+  }
+  function showMainMenu()
+  {
+   doc(Doc.Concat([Bs.btnPrimary("accounts",function()
+   {
+    return function()
+    {
+     return(trigger("list_account_types"))("list_account_types");
+    };
+   }),Doc.TextNode("     "),Bs.btnPrimary("transactions",function()
+   {
+    return function()
+    {
+     return(trigger("list_test_categories"))("list_test_categories");
+    };
+   }),Doc.TextNode("     "),Bs.btnPrimary("budgets",function()
+   {
+    return function()
+    {
+     return(triggerJournal("symptom_journal"))("symptom_journal");
+    };
+   }),Doc.TextNode("     "),Bs.btnPrimary("reports",function()
+   {
+    return function()
+    {
+     return(triggerJournal("mood_journal"))("mood_journal");
+    };
+   }),Doc.TextNode("     "),Bs.btnPrimary("caregiver",function()
+   {
+    return function()
+    {
+     return(triggerJournal("caregiver_journal"))("caregiver_journal");
+    };
+   }),Doc.TextNode("     "),Bs.btnSecondary("settings",function()
+   {
+    return function()
+    {
+     return(trigger("list_settings_categories"))("list_settings_categories");
+    };
+   }),Doc.TextNode("     "),Bs.btnInfo("help",function()
+   {
+    return function()
+    {
+     return(trigger("help"))("help");
+    };
+   })]));
+  }
+  function showAccount(name,desc)
+  {
+   return doc(Doc.Element("div",[ClientExtensions.cls("jumbotron")],[Doc.Element("h1",[ClientExtensions.cls("display-4")],[Doc.TextNode(name)]),Doc.Element("p",[ClientExtensions.cls("lead")],[Doc.TextNode(desc)]),Doc.Element("hr",[ClientExtensions.cls("my-4")],[]),Bs.btnPrimary("balance",function()
+   {
+    return function()
+    {
+     return(trigger("account_balance"))("account_balance");
+    };
+   }),Doc.TextNode("     "),Bs.btnPrimary("journal",function()
+   {
+    return function()
+    {
+     return(trigger("account_journal"))("account_journal");
+    };
+   }),Doc.TextNode("     "),Bs.btnPrimary("transactions",function()
+   {
+    return function()
+    {
+     return(trigger("account_transactions"))("account_transactions");
+    };
+   })]));
   }
   DialogueModule.debugInterpreterStart(d,function(m$1)
   {
    Accounting.debug(m$1);
   },Accounting.name());
   cui=d.$0;
-  handle=Runtime.Curried(DialogueModule.handle,2,[d,d$1]);
-  trigger=Runtime.Curried(DialogueModule.trigger,2,[d,d$2,t]);
-  endt=Runtime.Curried(DialogueModule.endt,2,[d,d$3]);
+  remove=function(k)
+  {
+   DialogueModule.remove(d,d$1,k);
+  };
+  handle=Runtime.Curried(DialogueModule.handle,2,[d,d$2]);
+  trigger=Runtime.Curried(DialogueModule.trigger,2,[d,d$3,t]);
+  endt=Runtime.Curried(DialogueModule.endt,2,[d,d$4]);
   ask=function(q)
   {
-   Questions.ask(d,d$4,q);
+   Questions.ask(d,d$5,q);
   };
-  triggerJournal=Runtime.Curried(DialogueModule.trigger,2,[d,d$5,function(d$6)
+  triggerJournal=Runtime.Curried(DialogueModule.trigger,2,[d,d$6,function(d$7)
   {
-   Journal.update(d$6);
+   Journal.update(d$7);
   }]);
   testCategories=List.ofArray(["Physical Health Tests","Mental Health Tests","Cognitive Tests","Psychological Tests"]);
   List.ofArray(["Bladder Control Scale","Bowel Control Scale","Modified Fatigue Impact Scale","MOS Pain Effects Scale","Sexual Satisfaction Scale"]);
@@ -3790,44 +3880,89 @@
   sdmtCharacters=List.ofArray(["\u2540","\u2560","\u2599","\u25ae","\u25b3","\u25c9","\u25e0","\u25f0","\u2593"]);
   accountTypes=(new AjaxRemotingProvider.New()).Sync("Nash.Web:Nash.Web.GnuCash.getaccountTypes:-296696751",[]);
   m=DialogueModule.frame(d.$4);
-  if(m.$==1&&(($2=Intent$2("list_account_types",m.$0),$2!=null&&$2.$==1)&&m.$1.$==0))
-   (handle("list_account_types"))(function()
+  if(m.$==1&&(a=Intent$2("create_account",m.$0),a!=null&&a.$==1&&(a$1=NLU$1.Entity1OfAny("account_name",a.$0[1]),a$1!=null&&a$1.$==1&&(m.$1.$==0&&(a$1.$0.get_Value()==="pets"&&($1=a$1.$0,true))))))
+   (handle("create_account"))(function()
    {
-    ask(menu("menuAccountTypes",accountTypes,"Choose one of the account types from the list.",trigger));
+    showAccount("Pets","");
    });
   else
-   m.$==1&&(a=Response("menuTestCategories",m.$0),a!=null&&a.$==1&&(($4=Intent$2("cancel",a.$0[0]),$4!=null&&$4.$==1)&&m.$1.$==0))?(endt("menuTestCategories"))(function()
+   m.$==1&&(($3=Intent$2("accounts",m.$0),$3!=null&&$3.$==1)&&m.$1.$==0)?(handle("accounts"))(function()
    {
-    doc(Doc.Concat([Bs.btnPrimary("tests",function()
+    ask(menu("menuAccountTypes",accountTypes,"These are the kinds of accounts that are available. Choose one of the account types from the list.",trigger));
+   }):m.$==1&&(a$2=Response("menuAccountTypes",m.$0),a$2!=null&&a$2.$==1&&(a$3=NLU$1.Number(a$2.$0[0]),a$3!=null&&a$3.$==1&&(m.$1.$==0&&($4=a$3.$0,true))))?(endt("menuAccountTypes"))(function()
+   {
+    var at,accts;
+    at=accountTypes.get_Item($4-1);
+    if(have("accountType"))
+     remove("accountType");
+    add("accountType",at);
+    accts=(new AjaxRemotingProvider.New()).Sync("Nash.Web:Nash.Web.GnuCash.getAccountsByCategory:1274416399",[at]);
+    if(have("accounts"))
+     remove("accounts");
+    add("accounts",accts);
+    ask(menu("menuAccounts",List.map(function(a$27)
     {
-     return function()
+     return a$27.Name;
+    },accts),"Choose an account from the list. Click on the account name or enter the number of the account.",trigger));
+   }):m.$==1&&(a$4=Response("menuAccountTypes",m.$0),a$4!=null&&a$4.$==1&&(($6=Intent$2("cancel",a$4.$0[0]),$6!=null&&$6.$==1)&&m.$1.$==0))?(endt("menuAccountTypes"))(function()
+   {
+    showMainMenu();
+   }):m.$==1&&(a$5=Response("menuAccounts",m.$0),a$5!=null&&a$5.$==1&&(a$6=NLU$1.Number(a$5.$0[0]),a$6!=null&&a$6.$==1&&(m.$1.$==0&&($7=a$6.$0,true))))?(endt("menuAccounts"))(function()
+   {
+    var acct;
+    acct=prop("accounts").get_Item($7-1);
+    Accounting.debug((function($44)
+    {
+     return function($45)
      {
-      return(trigger("list_test_categories"))("list_test_categories");
+      return $44("Selected "+Utils.toSafe($45)+".");
      };
-    }),Doc.TextNode("     "),Bs.btnInfo("help",function()
+    }(Global.id))(acct.Name));
+    add("account",acct.Name);
+    doc(Doc.Element("div",[ClientExtensions.cls("jumbotron")],[Doc.Element("h1",[ClientExtensions.cls("display-4")],[Doc.TextNode(acct.Name)]),Doc.Element("p",[ClientExtensions.cls("lead")],[Doc.TextNode(acct.Description)]),Doc.Element("hr",[ClientExtensions.cls("my-4")],[]),Bs.btnPrimary("balance",function()
     {
      return function()
      {
-      return(trigger("help"))("help");
+      return(trigger("account_balance"))("account_balance");
+     };
+    }),Doc.TextNode("     "),Bs.btnPrimary("journal",function()
+    {
+     return function()
+     {
+      return(trigger("account_journal"))("account_journal");
+     };
+    }),Doc.TextNode("     "),Bs.btnPrimary("transactions",function()
+    {
+     return function()
+     {
+      return(trigger("account_transactions"))("account_transactions");
      };
     })]));
-   }):m.$==1&&(a$1=Response("menuAccountTypes",m.$0),a$1!=null&&a$1.$==1&&(a$2=NLU$1.Number(a$1.$0[0]),a$2!=null&&a$2.$==1&&(m.$1.$==0&&($5=a$2.$0,true))))?(endt("menuAccountTypes"))(function()
+   }):m.$==1&&(a$7=Response("menuAccounts",m.$0),a$7!=null&&a$7.$==1&&(($9=Intent$2("cancel",a$7.$0[0]),$9!=null&&$9.$==1)&&m.$1.$==0))?(endt("menuAccounts"))(function()
    {
-    var at;
-    at=accountTypes.get_Item($5-1);
-    ask(menu("menuAccounts",List.map(function(a$22)
+    ask(menu("menuAccountTypes",accountTypes,"These are the kinds of accounts that are available. Choose one of the account types from the list.",trigger));
+   }):m.$==1&&(($11=Intent$2("account_balance",m.$0),$11!=null&&$11.$==1)&&m.$1.$==0)?(handle("account_balance"))(function()
+   {
+    var acctName;
+    acctName=prop("account");
+    Seq.find(function(a$27)
     {
-     return a$22.Name;
-    },(new AjaxRemotingProvider.New()).Sync("Nash.Web:Nash.Web.GnuCash.getAccountsByCategory:1274416399",[at])),"Choose an account from the list.",trigger));
-   }):m.$==1&&(a$3=Response("menuPhysicalHealthTests",m.$0),a$3!=null&&a$3.$==1?($7=Intent$2("cancel",a$3.$0[0]),$7!=null&&$7.$==1)?m.$1.$==0:(a$4=Response("menuMentalHealthTests",m.$0),a$4!=null&&a$4.$==1?($8=Intent$2("cancel",a$4.$0[0]),$8!=null&&$8.$==1)?m.$1.$==0:(a$5=Response("menuCognitiveTests",m.$0),a$5!=null&&a$5.$==1?($9=Intent$2("cancel",a$5.$0[0]),$9!=null&&$9.$==1)?m.$1.$==0:(a$6=Response("menuPsychologicalTests",m.$0),a$6!=null&&a$6.$==1&&(($10=Intent$2("cancel",a$6.$0[0]),$10!=null&&$10.$==1)&&m.$1.$==0)):(a$7=Response("menuPsychologicalTests",m.$0),a$7!=null&&a$7.$==1&&(($11=Intent$2("cancel",a$7.$0[0]),$11!=null&&$11.$==1)&&m.$1.$==0))):(a$8=Response("menuCognitiveTests",m.$0),a$8!=null&&a$8.$==1?($12=Intent$2("cancel",a$8.$0[0]),$12!=null&&$12.$==1)?m.$1.$==0:(a$9=Response("menuPsychologicalTests",m.$0),a$9!=null&&a$9.$==1&&(($13=Intent$2("cancel",a$9.$0[0]),$13!=null&&$13.$==1)&&m.$1.$==0)):(a$10=Response("menuPsychologicalTests",m.$0),a$10!=null&&a$10.$==1&&(($14=Intent$2("cancel",a$10.$0[0]),$14!=null&&$14.$==1)&&m.$1.$==0)))):(a$11=Response("menuMentalHealthTests",m.$0),a$11!=null&&a$11.$==1?($15=Intent$2("cancel",a$11.$0[0]),$15!=null&&$15.$==1)?m.$1.$==0:(a$12=Response("menuCognitiveTests",m.$0),a$12!=null&&a$12.$==1?($16=Intent$2("cancel",a$12.$0[0]),$16!=null&&$16.$==1)?m.$1.$==0:(a$13=Response("menuPsychologicalTests",m.$0),a$13!=null&&a$13.$==1&&(($17=Intent$2("cancel",a$13.$0[0]),$17!=null&&$17.$==1)&&m.$1.$==0)):(a$14=Response("menuPsychologicalTests",m.$0),a$14!=null&&a$14.$==1&&(($18=Intent$2("cancel",a$14.$0[0]),$18!=null&&$18.$==1)&&m.$1.$==0))):(a$15=Response("menuCognitiveTests",m.$0),a$15!=null&&a$15.$==1?($19=Intent$2("cancel",a$15.$0[0]),$19!=null&&$19.$==1)?m.$1.$==0:(a$16=Response("menuPsychologicalTests",m.$0),a$16!=null&&a$16.$==1&&(($20=Intent$2("cancel",a$16.$0[0]),$20!=null&&$20.$==1)&&m.$1.$==0)):(a$17=Response("menuPsychologicalTests",m.$0),a$17!=null&&a$17.$==1&&(($21=Intent$2("cancel",a$17.$0[0]),$21!=null&&$21.$==1)&&m.$1.$==0)))))?DialogueModule["endt'"](d,function(m$1)
+     return a$27.Name===acctName;
+    },prop("accounts"));
+    if(acctName==="Checking Account")
+     {
+      say("The balance on your Checking Account is $3900.");
+      echo("The balance on your Checking Account is $3900.");
+     }
+   }):m.$==1&&(a$8=Response("menuPhysicalHealthTests",m.$0),a$8!=null&&a$8.$==1?($13=Intent$2("cancel",a$8.$0[0]),$13!=null&&$13.$==1)?m.$1.$==0:(a$9=Response("menuMentalHealthTests",m.$0),a$9!=null&&a$9.$==1?($14=Intent$2("cancel",a$9.$0[0]),$14!=null&&$14.$==1)?m.$1.$==0:(a$10=Response("menuCognitiveTests",m.$0),a$10!=null&&a$10.$==1?($15=Intent$2("cancel",a$10.$0[0]),$15!=null&&$15.$==1)?m.$1.$==0:(a$11=Response("menuPsychologicalTests",m.$0),a$11!=null&&a$11.$==1&&(($16=Intent$2("cancel",a$11.$0[0]),$16!=null&&$16.$==1)&&m.$1.$==0)):(a$12=Response("menuPsychologicalTests",m.$0),a$12!=null&&a$12.$==1&&(($17=Intent$2("cancel",a$12.$0[0]),$17!=null&&$17.$==1)&&m.$1.$==0))):(a$13=Response("menuCognitiveTests",m.$0),a$13!=null&&a$13.$==1?($18=Intent$2("cancel",a$13.$0[0]),$18!=null&&$18.$==1)?m.$1.$==0:(a$14=Response("menuPsychologicalTests",m.$0),a$14!=null&&a$14.$==1&&(($19=Intent$2("cancel",a$14.$0[0]),$19!=null&&$19.$==1)&&m.$1.$==0)):(a$15=Response("menuPsychologicalTests",m.$0),a$15!=null&&a$15.$==1&&(($20=Intent$2("cancel",a$15.$0[0]),$20!=null&&$20.$==1)&&m.$1.$==0)))):(a$16=Response("menuMentalHealthTests",m.$0),a$16!=null&&a$16.$==1?($21=Intent$2("cancel",a$16.$0[0]),$21!=null&&$21.$==1)?m.$1.$==0:(a$17=Response("menuCognitiveTests",m.$0),a$17!=null&&a$17.$==1?($22=Intent$2("cancel",a$17.$0[0]),$22!=null&&$22.$==1)?m.$1.$==0:(a$18=Response("menuPsychologicalTests",m.$0),a$18!=null&&a$18.$==1&&(($23=Intent$2("cancel",a$18.$0[0]),$23!=null&&$23.$==1)&&m.$1.$==0)):(a$19=Response("menuPsychologicalTests",m.$0),a$19!=null&&a$19.$==1&&(($24=Intent$2("cancel",a$19.$0[0]),$24!=null&&$24.$==1)&&m.$1.$==0))):(a$20=Response("menuCognitiveTests",m.$0),a$20!=null&&a$20.$==1?($25=Intent$2("cancel",a$20.$0[0]),$25!=null&&$25.$==1)?m.$1.$==0:(a$21=Response("menuPsychologicalTests",m.$0),a$21!=null&&a$21.$==1&&(($26=Intent$2("cancel",a$21.$0[0]),$26!=null&&$26.$==1)&&m.$1.$==0)):(a$22=Response("menuPsychologicalTests",m.$0),a$22!=null&&a$22.$==1&&(($27=Intent$2("cancel",a$22.$0[0]),$27!=null&&$27.$==1)&&m.$1.$==0)))))?DialogueModule["endt'"](d,function(m$1)
    {
     Accounting.debug(m$1);
    },function()
    {
     ask(menu("menuTestCategories",testCategories,"Choose one of the test categories from the list.",trigger));
-   }):m.$==1&&(a$18=Response("menuCognitiveTests",m.$0),a$18!=null&&a$18.$==1&&(a$19=NLU$1.Number(a$18.$0[0]),a$19!=null&&a$19.$==1&&(m.$1.$==0&&($22=a$19.$0,true))))?(endt("menuCognitiveTests"))(function()
+   }):m.$==1&&(a$23=Response("menuCognitiveTests",m.$0),a$23!=null&&a$23.$==1&&(a$24=NLU$1.Number(a$23.$0[0]),a$24!=null&&a$24.$==1&&(m.$1.$==0&&($28=a$24.$0,true))))?(endt("menuCognitiveTests"))(function()
    {
-    if($22===2)
+    if($28===2)
      {
       doc(Doc.TextNode("    "));
       say("You last took this test Monday. You're scheduled to take this test agan this week.");
@@ -3859,7 +3994,7 @@
       })]));
      }
     else
-     if($22===3)
+     if($28===3)
       {
        doc(Doc.TextNode("    "));
        say("You last took this test Monday. You're scheduled to take this test agan this week.");
@@ -3893,7 +4028,7 @@
       }
      else
       say("Choose a cognitive test from the list.");
-   }):m.$==1&&(($24=Intent$2("start_test_pasat",m.$0),$24!=null&&$24.$==1)&&m.$1.$==0)?(handle("start_test_pasat"))(function()
+   }):m.$==1&&(($30=Intent$2("start_test_pasat",m.$0),$30!=null&&$30.$==1)&&m.$1.$==0)?(handle("start_test_pasat"))(function()
    {
     say("You are going to hear a seriesof single digit numbers that will be presented at the rate of one every 3 seconds. \r\n                                     Listen for the first two numbers, add them up, and tell me your answer. \r\n                                     When you hear the next number, add it to the one you heard right before it. \r\n                                     Continue to add the next number to each preceding one. Remember you are not being asked to give me a running total, but rather the sum of the last two numbers that you heard.");
     echo("Listen to the instructions and click the Yes button when ready.");
@@ -3919,13 +4054,13 @@
       echo("Are you ready to begin?");
      }
     }));
-   }):m.$==1&&(a$20=NLU$1.Yes(m.$0),a$20!=null&&a$20.$==1&&(($26=Response("verify_start_test_pasat",a$20.$0),$26!=null&&$26.$==1)&&m.$1.$==0))?($("#testprofile").removeClass("invisible"),$("#testprofile-name").text("PASAT"),$(self.document.getElementById("#testprofile-timer")).asPieProgress(JQueryPieProgressOptions.New("pie_progress",0,120,0,120,1200,"linear",function()
+   }):m.$==1&&(a$25=NLU$1.Yes(m.$0),a$25!=null&&a$25.$==1&&(($32=Response("verify_start_test_pasat",a$25.$0),$32!=null&&$32.$==1)&&m.$1.$==0))?($("#testprofile").removeClass("invisible"),$("#testprofile-name").text("PASAT"),$(self.document.getElementById("#testprofile-timer")).asPieProgress(JQueryPieProgressOptions.New("pie_progress",0,120,0,120,1200,"linear",function()
    {
     var minutes,seconds;
     minutes=Operators.toInt(Math.floor(this.now/60));
     seconds=Operators.toInt(this.now%60);
     return Global.String(minutes)+": "+(seconds>10?Global.String(seconds):"0"+Global.String(seconds));
-   })),$(self.document.getElementById("#testprofile-timer")).asPieProgress("start")):m.$==1&&(($28=Intent$2("start_test_sdmt",m.$0),$28!=null&&$28.$==1)&&m.$1.$==0)?(handle("start_test_sdmt"))(function()
+   })),$(self.document.getElementById("#testprofile-timer")).asPieProgress("start")):m.$==1&&(($34=Intent$2("start_test_sdmt",m.$0),$34!=null&&$34.$==1)&&m.$1.$==0)?(handle("start_test_sdmt"))(function()
    {
     say("You will see a sequence of 9 symbols. Using the symbol-digit key that you see displayed here, enter the 9 digits that match the symbol according to the key.");
     echo("Listen to the instructions and click the Yes button when ready.");
@@ -3948,7 +4083,7 @@
      $3:null,
      $4:Global.ignore
     }));
-   }):m.$==1&&(a$21=NLU$1.Yes(m.$0),a$21!=null&&a$21.$==1&&(($30=Response("verify_start_test_sdmt",a$21.$0),$30!=null&&$30.$==1)&&m.$1.$==0))?(endt("verify_start_test_sdmt"))(function()
+   }):m.$==1&&(a$26=NLU$1.Yes(m.$0),a$26!=null&&a$26.$==1&&(($36=Response("verify_start_test_sdmt",a$26.$0),$36!=null&&$36.$==1)&&m.$1.$==0))?(endt("verify_start_test_sdmt"))(function()
    {
     add("testentry",true);
     $("#testprofile").hasClass("invisible")?$("#testprofile").removeClass("invisible").addClass("visible"):void 0;
@@ -4041,7 +4176,7 @@
     })]));
     $(self.document.getElementById("pp1")).asPieProgress("start");
     say("Enter the 9 digits corresponding to the symbols shown.");
-   }):m.$==1&&(($32=Intent$2("r_test_sdmt",m.$0),$32!=null&&$32.$==1)&&m.$1.$==0)?(popu(),echo("Round 2"),$("#testprofile-round").text("Round 2"),doc(Doc.Element("table",[ClientExtensions.cls("table table-bordered")],[Doc.Element("thead",[],[Doc.Element("tr",[],Arrays.map(function(c)
+   }):m.$==1&&(($38=Intent$2("r_test_sdmt",m.$0),$38!=null&&$38.$==1)&&m.$1.$==0)?(popu(),echo("Round 2"),$("#testprofile-round").text("Round 2"),doc(Doc.Element("table",[ClientExtensions.cls("table table-bordered")],[Doc.Element("thead",[],[Doc.Element("tr",[],Arrays.map(function(c)
    {
     return Doc.Element("th",[AttrProxy.Create("scope","col"),AttrProxy.Create("style","font-size:300%;text-align:center")],[Doc.TextNode(c)]);
    },ClientExtensions.shuffleArray(Arrays.ofList(sdmtCharacters))))])])),doc(Doc.Concat([Doc.TextNode("    "),Bs.btnWarning("1",function()
@@ -4110,7 +4245,7 @@
     {
      return(trigger("stop_test_sdmt"))("stop_test_sdmt");
     };
-   })])),say("Enter the 9 digits corresponding to the symbols shown.")):m.$==1&&(($34=Intent$2("stop_test_sdmt",m.$0),$34!=null&&$34.$==1)&&m.$1.$==0)?(popu(),$(self.document.getElementById("pp1")).asPieProgress("stop"),doc(Doc.Concat([Bs.btnPrimary("knowledge",function()
+   })])),say("Enter the 9 digits corresponding to the symbols shown.")):m.$==1&&(($40=Intent$2("stop_test_sdmt",m.$0),$40!=null&&$40.$==1)&&m.$1.$==0)?(popu(),$(self.document.getElementById("pp1")).asPieProgress("stop"),doc(Doc.Concat([Bs.btnPrimary("knowledge",function()
    {
     return function()
     {
@@ -4152,7 +4287,7 @@
     {
      return(trigger("help"))("help");
     };
-   })]))):m.$==1&&(($36=Intent$2("query",m.$0),$36!=null&&$36.$==1)?m.$1.$==0:($37=Intent$2("medication_journal",m.$0),$37!=null&&$37.$==1)&&m.$1.$==0)?Journal.update(d):DialogueModule.didNotUnderstand(d,function(m$1)
+   })]))):m.$==1&&(($42=Intent$2("query",m.$0),$42!=null&&$42.$==1)?m.$1.$==0:($43=Intent$2("medication_journal",m.$0),$43!=null&&$43.$==1)&&m.$1.$==0)?Journal.update(d):DialogueModule.didNotUnderstand(d,function(m$1)
    {
     Accounting.debug(m$1);
    },Accounting.name());
@@ -4332,13 +4467,13 @@
         {
          return function()
          {
-          return(triggerAccounting("list_account_types"))("list_account_types");
+          return(triggerAccounting("accounts"))("accounts");
          };
         }),Doc.TextNode("     "),Bs.btnPrimary("transactions",function()
         {
          return function()
          {
-          return(triggerAccounting("list_test_categories"))("list_test_categories");
+          return(triggerAccounting("transactions"))("list_test_categories");
          };
         }),Doc.TextNode("     "),Bs.btnPrimary("budgets",function()
         {
@@ -4352,7 +4487,13 @@
          {
           return(triggerJournal("mood_journal"))("mood_journal");
          };
-        }),Doc.TextNode("     "),Bs.btnPrimary("caregiver",function()
+        }),Doc.TextNode("     "),Bs.btnPrimary("invoices",function()
+        {
+         return function()
+         {
+          return(triggerJournal("caregiver_journal"))("caregiver_journal");
+         };
+        }),Doc.TextNode("     "),Bs.btnPrimary("documents",function()
         {
          return function()
          {
@@ -4500,7 +4641,7 @@
  };
  Main.update=function(d)
  {
-  var utterances,dispatch,handle,Agenda,m,a,a$1,$1,$2,$3,$4,a$2,a$3,a$4,$5,a$5,$6,a$6,$7,$8,a$7,$9,$10,a$8,a$9,a$10,a$11,a$12,a$13,$11,$12;
+  var utterances,dispatch,handle,Agenda,m,a,a$1,$1,$2,$3,$4,a$2,a$3,a$4,$5,a$5,$6,a$6,$7,$8,a$7,$9,$10,a$8,a$9,a$10,a$11,a$12,a$13,$11,$12,$13,u;
   function echo(t)
   {
    DialogueModule.echo(d,t);
@@ -4534,9 +4675,9 @@
    return DialogueModule["Intent'_"](d,n,a$14);
   }
   utterances=d.$4;
-  Main.debug(((((Runtime.Curried(function($13,$14,$15,$16)
+  Main.debug(((((Runtime.Curried(function($14,$15,$16,$17)
   {
-   return $13("Module "+Utils.toSafe($14)+" starting utterances:"+Utils.prettyPrint($15)+", questions: "+Utils.prettyPrint($16)+".");
+   return $14("Module "+Utils.toSafe($15)+" starting utterances:"+Utils.prettyPrint($16)+", questions: "+Utils.prettyPrint($17)+".");
   },4))(Global.id))(Main.name()))(utterances))(d.$2));
   dispatch=Runtime.Curried(DialogueModule.dispatch,2,[d,d$1]);
   handle=Runtime.Curried(DialogueModule.handle,2,[d,d$2]);
@@ -4545,11 +4686,11 @@
   a=(Agenda(User.name()))(m);
   if(a!=null&&a.$==1)
    {
-    Main.debug((function($13)
+    Main.debug((function($14)
     {
-     return function($14)
+     return function($15)
      {
-      return $13("Agenda is "+Nash$Web_GeneratedPrintf.p$27($14)+".");
+      return $14("Agenda is "+Nash$Web_GeneratedPrintf.p$27($15)+".");
      };
     }(Global.id))((d.get_DialogueQuestions())[0]));
     User.update(d);
@@ -4557,11 +4698,11 @@
   else
    {
     a$1=(Agenda(Tests.name()))(m);
-    a$1!=null&&a$1.$==1?(Main.debug((function($13)
+    a$1!=null&&a$1.$==1?(Main.debug((function($14)
     {
-     return function($14)
+     return function($15)
      {
-      return $13("Agenda is "+Nash$Web_GeneratedPrintf.p$27($14)+".");
+      return $14("Agenda is "+Nash$Web_GeneratedPrintf.p$27($15)+".");
      };
     }(Global.id))((d.get_DialogueQuestions())[0])),Tests.update(d)):m.$==1&&(($2=_Intent$1("help",m.$0),$2!=null&&$2.$==1)?m.$1.$==0:($3=Intent$2("help",m.$0),$3!=null&&$3.$==1)&&m.$1.$==0)?(say("The following commands are available."),echo("The following commands are available:"),echo("<span style='background-color:blue;color:white'>journal</span> - Show a list of writing prompts"),echo("<span style='background-color:blue;color:white'>debug-journal</span> <text-entry> - Show a set of debug info for a journal entry.")):m.$==1&&(a$2=(a$3=DialogueModule.PropNotSet_(d,"started",m.$0),a$3!=null&&a$3.$==1?{
      $:1,
@@ -4587,6 +4728,12 @@
     }):m.$==1&&(($12=Intent$2("journal",m.$0),$12!=null&&$12.$==1)&&m.$1.$==0)?(dispatch(Journal.name()))(function(d$4)
     {
      Journal.update(d$4);
+    }):m.$==1&&(m.$1.$==0&&((u=m.$0,u.get_Traits()!=null&&List.exists(function(t)
+    {
+     return t.get_Name()==="domain"&&t.get_Value()==="accounting";
+    },u.get_Traits().$0))&&($13=m.$0,true)))?(dispatch(Accounting.name()))(function(d$4)
+    {
+     Accounting.update(d$4);
     }):DialogueModule.didNotUnderstand(d,function(m$1)
     {
      Main.debug(m$1);
@@ -4787,7 +4934,7 @@
     return $1("Mic result: "+Utils.prettyPrint($2)+" "+Utils.prettyPrint($3)+".");
    }))(Global.id))(i))(e)),interpret(i,e)):Client.debug("Mic: No result returned.");
   };
-  mic.connect("4Y2BLQY5TWLIN7HFIV264S53MY4PCUAT");
+  mic.connect("AR6WFBX5MP46GIRF6S22HZLZ5I4I5UDW");
  };
  Client.sayRandom=function(t,phrases)
  {
